@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import axios from 'axios'
 import viteLogo from '/vite.svg'
 import Home from './views/Home'
+import Detail from './views/Detail';
 import './App.css'
 
 function App() {
@@ -34,10 +36,18 @@ function App() {
 
 
   return (
-    <>
-      <Home movies={movies} />
 
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home movies={movies} />}></Route>
+        <Route path='/detail/:id' element={<Detail />}></Route>
+
+      </Routes>
+
+
+    </BrowserRouter>
+
+
   )
 }
 
