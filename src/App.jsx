@@ -5,7 +5,9 @@ import axios from 'axios'
 import viteLogo from '/vite.svg'
 import Home from './views/Home'
 import Detail from './views/Detail';
+import Nav from './components/Nav';
 import './App.css'
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -21,7 +23,7 @@ function App() {
         const getMovies = await response.data;
 
         setMovies(getMovies);
-        console.log(movies)
+
 
       } catch (error) {
 
@@ -34,12 +36,16 @@ function App() {
 
   }, [])
 
+  useEffect(() => {
+    console.log(movies)
+  })
 
   return (
 
     <BrowserRouter>
+      <Nav />
       <Routes>
-        <Route index element={<Home movies={movies} />}></Route>
+        <Route index path='/' element={<Home movies={movies} />}></Route>
         <Route path='/detail/:id' element={<Detail />}></Route>
 
       </Routes>
