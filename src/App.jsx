@@ -36,9 +36,7 @@ function App() {
 
   }, [])
 
-  useEffect(() => {
-    console.log(movies)
-  })
+
 
   return (
 
