@@ -22,14 +22,13 @@ const Detail = () => {
 
     }, [])
 
-
+    useEffect(() => {
+        console.log(movie)
+    })
 
 
     return (
         <div>
-            {
-                movie.user ? (<div>{movie.user[0].email}</div>) : (<div> loading</div>)
-            }
 
 
             <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
@@ -38,11 +37,11 @@ const Detail = () => {
                         <header className="mb-4 lg:mb-6 not-format">
                             <address className="flex items-center mb-6 not-italic">
                                 <div className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                                    <img className="mr-4 w-16 h-16 rounded-full" src="" alt="Jese Leos" />
+                                    <img className="mr-4 w-16 h-16 rounded-full" src={movie.avatar ?? '/public/avatar.jpg'} alt="Jese Leos" />
                                     <div>
-                                        <a href="#" rel="author" className="text-xl font-bold text-gray-900 dark:text-white">Jese Leos</a>
-                                        <p className="text-base text-gray-500 dark:text-gray-400">Graphic Designer, educator & CEO Flowbite</p>
-                                        <p className="text-base text-gray-500 dark:text-gray-400"><time title="February 8th, 2022">Feb. 8, 2022</time></p>
+                                        <a href="#" rel="author" className="text-xl font-bold text-gray-900 dark:text-white">{movie.user ? movie.user[0].name : ''}</a>
+                                        <p className="text-base text-gray-500 dark:text-gray-400">{movie.user ? movie.user[0].email : ''}</p>
+                                        <p className="text-base text-gray-500 dark:text-gray-400"><time title="February 8th, 2022">{movie.created_at}</time></p>
                                     </div>
                                 </div>
                             </address>
