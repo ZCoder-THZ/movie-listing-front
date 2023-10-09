@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from 'axios';
 
 
@@ -39,7 +39,7 @@ const Detail = () => {
                                 <div className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                                     <img className="mr-4 w-16 h-16 rounded-full" src={movie.avatar ?? '/public/avatar.jpg'} alt="Jese Leos" />
                                     <div>
-                                        <a href="#" rel="author" className="text-xl font-bold text-gray-900 dark:text-white">{movie.user ? movie.user[0].name : ''}</a>
+                                        <Link to={`/users/public_profile/${movie.id}`} rel="author" className="text-xl font-bold text-gray-900 dark:text-white">{movie.user ? movie.user[0].name : ''}</Link>
                                         <p className="text-base text-gray-500 dark:text-gray-400">{movie.user ? movie.user[0].email : ''}</p>
                                         <p className="text-base text-gray-500 dark:text-gray-400"><time title="February 8th, 2022">{movie.created_at}</time></p>
                                     </div>

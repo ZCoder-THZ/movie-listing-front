@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, PureComponent } from 'react'
 import reactLogo from './assets/react.svg'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import axios from 'axios'
@@ -7,6 +7,7 @@ import Home from './views/Home'
 import Detail from './views/Detail';
 import Nav from './components/Nav';
 import './App.css'
+import PublicProfile from './views/PublicProfile';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
       <Routes>
         <Route index path='/' element={<Home movies={movies} />}></Route>
         <Route path='/detail/:id' element={<Detail />}></Route>
+        <Route path='/users/public_profile/:userId' element={<PublicProfile />}></Route>
 
       </Routes>
 
