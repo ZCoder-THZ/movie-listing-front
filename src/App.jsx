@@ -8,6 +8,7 @@ import Detail from './views/Detail';
 import Nav from './components/Nav';
 import './App.css'
 import PublicProfile from './views/PublicProfile';
+import RelatedMovies from './views/RelatedMovies';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route index path='/' element={<Home movies={movies} />}></Route>
         <Route path='/detail/:id' element={<Detail />}></Route>
         <Route path='/users/public_profile/:userId' element={<PublicProfile />}></Route>
+        <Route path='/user/related_movies/:userId' element={<RelatedMovies />}></Route>
 
       </Routes>
 

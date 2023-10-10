@@ -6,7 +6,12 @@ const Movies = ({ movie }) => {
         <div key={movie.id} className="max-w-sm m-1 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <img src={movie.cover_image_url} alt="" />
 
-            <h3 className='my-3'>Created By : {movie.user.name}</h3>
+            {movie.user && (
+                <h3 className='my-3'>Created By : {movie.user.name ?? ''}</h3>
+            )}
+            {/* {
+                movie.user ? <h3 className='my-3'>Created By : {movie.user.name ?? ''}</h3> : ''
+            } */}
             <a href="#">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{movie.title}</h5>
             </a>

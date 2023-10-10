@@ -7,7 +7,7 @@ import Movies from '../components/Movies';
 const Home = ({ movies }) => {
 
     useEffect(() => {
-        // console.log(movies)
+        console.log(movies)
     });
 
     const getDetail = async (id) => {
