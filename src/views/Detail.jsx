@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react'
 
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios';
-
-
-
+const apiUrl = import.meta.env.VITE_API_URL;
 const Detail = () => {
     const { id } = useParams();
     let [movie, setMovie] = useState('');
 
     useEffect(() => {
         async function getMovie() {
-            const response = await axios.get('http://127.0.0.1:8000/api/movies/' + id);
+            const response = await axios.get(`${apiUrl}/movies/`+id);
 
             const getmovie = await response.data.data;
 

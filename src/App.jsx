@@ -10,6 +10,7 @@ import './App.css'
 import PublicProfile from './views/PublicProfile';
 import SignUp from './views/SignUp';
 import RelatedMovies from './views/RelatedMovies';
+import {AuthContext,AuthContextProvider} from './contexts/AuthContext';
 
 
 function App() {
@@ -42,22 +43,18 @@ function App() {
 
 
   return (
-
     <BrowserRouter>
+    <AuthContextProvider>
       <Nav />
       <Routes>
-        <Route index path='/' element={<Home movies={movies} />}></Route>
-        <Route path='/detail/:id' element={<Detail />}></Route>
-        <Route path='/users/public_profile/:userId' element={<PublicProfile />}></Route>
-        <Route path='/user/related_movies/:userId' element={<RelatedMovies />}></Route>
-        <Route path='/user/register' element={<SignUp/>}></Route>
-
+        <Route index path='/' element={<Home movies={movies} />} />
+        <Route path='/detail/:id' element={<Detail />} />
+        <Route path='/users/public_profile/:userId' element={<PublicProfile />} />
+        <Route path='/user/related_movies/:userId' element={<RelatedMovies />} />
+        <Route path='/user/register' element={<SignUp />} />
       </Routes>
-
-
-    </BrowserRouter>
-
-
+    </AuthContextProvider>
+  </BrowserRouter>
   )
 }
 

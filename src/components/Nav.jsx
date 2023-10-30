@@ -15,9 +15,9 @@ const Nav = () => {
                 </span>
             </Navbar.Brand>
             <div className="flex md:order-2">
-                <Button>
-                    Get started
-                </Button>
+                <Link className='bg-teal-600 py-1 px-2 text-white rounded-md' to={'/user/register'}>
+                    Sign Up
+                </Link>
                 <Navbar.Toggle />
             </div>
             <Navbar.Collapse>
@@ -27,15 +27,9 @@ const Nav = () => {
                 <Navbar.Link href="#">
                     About
                 </Navbar.Link>
-                <Navbar.Link href="#">
-                    Services
-                </Navbar.Link>
-                <Navbar.Link href="#">
-                    Pricing
-                </Navbar.Link>
-                <Navbar.Link href="#">
-                    Contact
-                </Navbar.Link>
+           
+                <Link to={'/user/register'}>Sign UP</Link>
+
             </Navbar.Collapse>
         </Navbar>
     )

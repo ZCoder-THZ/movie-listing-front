@@ -1,13 +1,18 @@
 import axios from 'axios';
 import { list } from 'postcss';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect ,useContext} from 'react'
 import { Link } from 'react-router-dom';
 import Movies from '../components/Movies';
+import { AuthContext } from '../contexts/AuthContext';
+
 
 const Home = ({ movies }) => {
 
+    const {isAuth,setAuth}=useContext(AuthContext)
+
     useEffect(() => {
-        console.log(movies)
+      setAuth(true)
+      console.log(isAuth)
     });
 
     const getDetail = async (id) => {
