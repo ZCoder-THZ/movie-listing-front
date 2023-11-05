@@ -9,3 +9,19 @@ export const register=async (data)=>{
     return response;
 
 }
+
+export const login=async (data)=>{
+
+    try {
+        const login=await axios.post(`${api}/login`,data);
+        const response=await login.data;
+    
+        return response
+      
+    } catch (error) {
+        throw error
+    }
+
+   
+
+}

@@ -9,6 +9,9 @@ import Nav from './components/Nav';
 import './App.css'
 import PublicProfile from './views/PublicProfile';
 import SignUp from './views/SignUp';
+import Login from './views/Login';
+
+import createMovie from './views/movies/createMovie';
 import RelatedMovies from './views/RelatedMovies';
 import {AuthContext,AuthContextProvider} from './contexts/AuthContext';
 
@@ -48,10 +51,16 @@ function App() {
       <Nav />
       <Routes>
         <Route index path='/' element={<Home movies={movies} />} />
+        <Route path='/movies/create' element={<createMovie/>} />
+
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='/users/public_profile/:userId' element={<PublicProfile />} />
         <Route path='/user/related_movies/:userId' element={<RelatedMovies />} />
         <Route path='/user/register' element={<SignUp />} />
+        <Route path='/user/login' element={<Login />} />
+
+   
+
       </Routes>
     </AuthContextProvider>
   </BrowserRouter>

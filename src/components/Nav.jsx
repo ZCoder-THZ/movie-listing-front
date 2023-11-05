@@ -1,8 +1,14 @@
 import { Button, Navbar } from 'flowbite-react';
+import React,{ useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import React from 'react'
+import { AuthContext } from '../contexts/AuthContext';
+
 
 const Nav = () => {
+    const {token,setToken}=useContext(AuthContext);
+
+   
+
     return (
         <Navbar
             fluid
@@ -14,12 +20,18 @@ const Nav = () => {
                     Flowbite React
                 </span>
             </Navbar.Brand>
-            <div className="flex md:order-2">
-                <Link className='bg-teal-600 py-1 px-2 text-white rounded-md' to={'/user/register'}>
+            {
+                !token?  <div className="flex md:order-2">
+                <Link className='bg-teal-600 py-1 px-2 text-white rounded-md me-2' to={'/user/register'}>
                     Sign Up
                 </Link>
+                <Link className=' border-solid border-2 text-teal-500 border-teal-600 py-1 px-2  rounded-md' to={'/user/login'}>
+                    Sign In
+                </Link>
                 <Navbar.Toggle />
-            </div>
+            </div>:''
+            }
+          
             <Navbar.Collapse>
                 <Link to={'/'}>
                     Movies
@@ -29,6 +41,8 @@ const Nav = () => {
                 </Navbar.Link>
            
                 <Link to={'/user/register'}>Sign UP</Link>
+                   
+           
 
             </Navbar.Collapse>
         </Navbar>
