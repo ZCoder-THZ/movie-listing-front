@@ -39,10 +39,13 @@ const Nav = () => {
                 <Navbar.Link href="#">
                     About
                 </Navbar.Link>
-           
-                <Link to={'/user/register'}>Sign UP</Link>
-                   
-           
+                {
+                    token?<Link onClick={()=>{
+                        setToken(null)
+                        localStorage.removeItem('token') 
+                        
+                    }} className='text-teal-500 border-teal-600  rounded-md'>Sign Out</Link>:''
+                }
 
             </Navbar.Collapse>
         </Navbar>
