@@ -1,48 +1,44 @@
+import React, { useEffect, useContext, useState } from "react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 import Movies from "../components/Movies";
-const RelatedMovies = () => {
-  const { userId } = useParams();
-  const [relatedMovies, setRelatedMovies] = useState([]);
-  const [user, setUser] = useState({});
-  useEffect(() => {
-    async function getRelatedMovies() {
-      const fetchRelatedMovies = await axios.get(
-        `http://localhost:8000/api/movies/user/related_movies/${userId}`
-      );
-      const data = await fetchRelatedMovies.data.data;
-      setRelatedMovies(data.related_movies);
-      setUser({
-        avatar: data.avatar ?? "",
-        email: data.email ?? "unknown",
-        name: data.name ?? "unknown",
-        id: data.id,
-      });
-    }
-    getRelatedMovies();
-  }, []);
+const apiUrl = import.meta.env.VITE_API_URL;
+
+const Account = () => {
+  const { token, setToken } = useContext(AuthContext);
+  const [user, setUser] = useState([]);
+  const [createdMovies, setCreatedMovies] = useState([]);
 
   useEffect(() => {
-    console.log(relatedMovies);
-    console.log(user);
-  });
+    async function getAccountInfo() {
+      const response = await axios.get(`${apiUrl}/account/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const getAccount = await response.data.data;
+      setUser(getAccount.user);
+      setCreatedMovies(getAccount.data);
+    }
+    getAccountInfo();
+  }, []);
 
   return (
     <div className="flex ">
       {/* <div className="profile  bg-red-500 w-[20rem]">
-                <h3 className="">{user.name}</h3>
-                <h3 className="">{user.email}</h3>
-                <h3 className="">{user.email}</h3>
+              <h3 className="">{user.name}</h3>
+              <h3 className="">{user.email}</h3>
+              <h3 className="">{user.email}</h3>
 
 
-            </div>
-            <div className="movies bg-slate-500 ">
-                {
-                    relatedMovies.map(movie => (<Movies movie={movie} key={movie.id} />))
+          </div>
+          <div className="movies bg-slate-500 ">
+              {
+                  relatedMovies.map(movie => (<Movies movie={movie} key={movie.id} />))
 
-                }
-            </div> */}
+              }
+          </div> */}
       <div className="h-screen overflow-y-scroll bg-white">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 lg:gap-8">
           <div className="post p-5 lg:p-1 rounded-md">
@@ -88,7 +84,7 @@ const RelatedMovies = () => {
           </div>
           <div className="lg:col-span-2 p-4 bg-white mt-3" id="posted">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {relatedMovies.map((movie) => (
+              {createdMovies.map((movie) => (
                 <Movies movie={movie} key={movie.id} />
               ))}
             </div>
@@ -99,4 +95,4 @@ const RelatedMovies = () => {
   );
 };
 
-export default RelatedMovies;
+export default Account;
